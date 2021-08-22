@@ -9,7 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        VStack {
         MainView()
+            Spacer()
+        }.background(Image("motivation_bg")
+                        .resizable()
+                        .scaledToFill()
+                        .edgesIgnoringSafeArea(.all))
     }
 }
 
@@ -29,8 +35,17 @@ struct MainView: View {
                 HStack {
                     ForEach(self.quotes, id:\.self) {
                         quote in
+                        VStack {
                         CircleImage(imageName: "lilly")
                         Text(quote)
+                            Divider()
+                            Text("By James Bond")
+                                .italic()
+                                .font(.custom("Helvetica neue", size: 14))
+                        }.frame(width: 300, height: 300)
+                        .foregroundColor(.blue)
+                        .padding(.all,4)
+                        .background(Color.gray)
                     }
                     
                     
@@ -46,7 +61,7 @@ struct MainView: View {
 struct CircleImage: View {
     var imageName: String
     var body: some View {
-        VStack {
+    
             Image(imageName)
                 .resizable()
                 .clipShape(Circle())
@@ -55,7 +70,7 @@ struct CircleImage: View {
                 
                 .frame(width: 100, height: 100)
                 .font(.headline)
-        }
+        
     }
     
     
