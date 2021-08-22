@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-       MainView()
+        MainView()
     }
 }
 
@@ -29,37 +29,44 @@ struct MainView: View {
                 HStack {
                     ForEach(self.quotes, id:\.self) {
                         quote in
-                        VStack {
-                            Image("lilly")
-                                .resizable()
-                                .clipShape(Circle())
-                                .overlay(Circle().stroke(Color.gray,lineWidth: 2))
-                                
-                                .frame(width: 60, height: 60)
-                                Text(quote)
-                                .font(.headline)
-                        }
-                        
-                       
+                        CircleImage(imageName: "lilly")
+                        Text(quote)
                     }
+                    
+                    
                 }
             }
-            
         }
+        
     }
-    
 }
 
 
 
-
-
-
-
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+struct CircleImage: View {
+    var imageName: String
+    var body: some View {
+        VStack {
+            Image(imageName)
+                .resizable()
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color.gray,lineWidth: 2))
+                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                
+                .frame(width: 100, height: 100)
+                .font(.headline)
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
     }
 }
